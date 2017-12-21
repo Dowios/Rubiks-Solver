@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+# You can enter a series of moves including X, Y, Z, M, E, S
+# The program will convert it into some simple "one face" moves like U, D, L, R, F, B
+# ***NOTICE: You can only use capitalization like "R", not "r". And use "Ri" to present the invert turn.
 
 import serial
 #ser = serial.Serial('COM9', 9600)
