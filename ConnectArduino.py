@@ -128,7 +128,7 @@ class Encoder():
 
 if __name__ == '__main__':
     '''Start the application'''
-    moves = raw_input("enter moves, split by space:")
+    moves = ""
     while moves != "esc":
-        Encoder().send(moves)
         moves = raw_input("enter moves, split by space:")
+        Encoder().send(moves)
