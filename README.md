@@ -10,4 +10,5 @@
 > #ser = serial.Serial('COM9', 9600) <br>
 > #ser.write(move.encode())
 ## Camera.py
-用滑鼠點擊Webcam視窗，cmd就會顯示點擊的顏色和HSV。
+開啟Webcam後，先以滑鼠點擊紅、橘、黃、綠、藍、白進行校正。 <br>
+校正完可以點擊魔術方塊上任何一面，將會輸出其顏色代碼(ROYGBW)
