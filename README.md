@@ -3,7 +3,11 @@
 確定你已有以下模組：
 * Opencv
 * PySerial
+* cube by pglass (put it @ your repository folder)
+https://github.com/pglass/cube
 
+## Allin.py
+依指示操作即可。結合以下兩個功能：
 ## ConnectArduino.py
 輸入一串字串如"U R Ri L F X E D"，可控制Arduino轉動魔術方塊機器的馬達。 <br>
 如果要與Arduino通訊，請將ConnectArduino.py中的兩個註解啟用，並將'COM9'改成Arduino的序列埠： <br>
