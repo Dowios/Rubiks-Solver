@@ -28,33 +28,33 @@ class Encoder():
 
     def serwrite(self, move):
         #ser.write(move.encode())
-        print move
+        print move,
 
 
     def expect(self, move):
         if move == 'E':
-            self.serwrite('U')
-            self.serwrite('Di')
+            self.send('U')
+            self.send('Di')
             self.rotation('Yi')
         elif move == 'Ei':
-            self.serwrite('Ui')
-            self.serwrite('D')
+            self.send('Ui')
+            self.send('D')
             self.rotation('Y')
         elif move == 'M':
-            self.serwrite('R')
-            self.serwrite('Li')
+            self.send('R')
+            self.send('Li')
             self.rotation('Xi')
         elif move == 'Mi':
-            self.serwrite('Ri')
-            self.serwrite('L')
+            self.send('Ri')
+            self.send('L')
             self.rotation('X')
         elif move == 'S':
-            self.serwrite('Fi')
-            self.serwrite('B')
+            self.send('Fi')
+            self.send('B')
             self.rotation('Z')
         elif move == 'Si':
-            self.serwrite('F')
-            self.serwrite('Bi')
+            self.send('F')
+            self.send('Bi')
             self.rotation('Zi')
         else:
             self.rotation(move)
@@ -87,20 +87,20 @@ class Encoder():
             trans['Ri'] = pre['Bi']
             trans['L'] = pre['F']
             trans['Li'] = pre['Fi']
-            trans['F'] = pre['L']
-            trans['Fi'] = pre['Li']
-            trans['B'] = pre['R']
-            trans['Bi'] = pre['Ri']
+            trans['F'] = pre['R']
+            trans['Fi'] = pre['Ri']
+            trans['B'] = pre['L']
+            trans['Bi'] = pre['Li']
 
         elif direction == 'Yi':
             trans['B'] = pre['R']
             trans['Bi'] = pre['Ri']
             trans['F'] = pre['L']
             trans['Fi'] = pre['Li']
-            trans['L'] = pre['F']
-            trans['Li'] = pre['Fi']
-            trans['R'] = pre['B']
-            trans['Ri'] = pre['Bi']
+            trans['L'] = pre['B']
+            trans['Li'] = pre['Bi']
+            trans['R'] = pre['F']
+            trans['Ri'] = pre['Fi']
 
         elif direction == 'Z':
             trans['U'] = pre['L']

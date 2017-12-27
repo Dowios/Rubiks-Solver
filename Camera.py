@@ -10,7 +10,8 @@ colornum = 0
 done = False
 colormap = []
 colorrange = [0, 0, 0, 0, 0, 0]
-def draw_circle(event,x,y,flags,param):
+
+def color_detect(event,x,y,flags,param):
 	global Shooting_images
 	global color
 	global colornum
@@ -73,20 +74,23 @@ def draw_circle(event,x,y,flags,param):
 		elif colornum >= 60:
 			print "done"
 			done = True
-
-
-# Create a black image, a window and bind the function to window
-if __name__ == '__main__':
+def open():
+	global Shooting_images
 	img = np.zeros((512,512,3), np.uint8)
 	cv2.namedWindow('image')
-	cv2.setMouseCallback('image',draw_circle)
+	cv2.setMouseCallback('image',color_detect)
 	print "Correcttion (Red, Orange, Yellow, Green, White):"
 	#Read Shooting images
 	while done != True:
 		ret, Shooting_images = webcam.read()
-		cv2.imshow(WINDOW_NAME,Shooting_images)
+		cv2.imshow('image',Shooting_images)
 		k = cv2.waitKey(5) & 0xFF
 		if k == 27:
 			break
 	#press ESC leave
+	cv2.destroyAllWindows()
+	return color
+
+# Create a black image, a window and bind the function to window
+if __name__ == '__main__':
 	cv2.destroyAllWindows()
