@@ -3,8 +3,10 @@
 # The program will convert it into some simple "one face" moves like U, D, L, R, F, B
 # ***NOTICE: You can only use capitalization like "R", not "r". And use "Ri" to present the invert turn.
 
+import time
 import serial
-#ser = serial.Serial('COM9', 9600)
+ser = serial.Serial('COM9', 9600)
+
 
 pre = {'U':'U', 'Ui':'u', 'D':'D', 'Di':'d', 'L':'L', 'Li':'l', 'R':'R', 'Ri':'r', 'F':'F', 'Fi':'f', 'B':'B', 'Bi':'b'}
 trans = {'U':'U', 'Ui':'u', 'D':'D', 'Di':'d', 'L':'L', 'Li':'l', 'R':'R', 'Ri':'r', 'F':'F', 'Fi':'f', 'B':'B', 'Bi':'b'}
@@ -27,8 +29,10 @@ class Encoder():
                 self.serwrite(word)
 
     def serwrite(self, move):
-        #ser.write(move.encode())
         print move,
+        ser.write(move.encode())
+        time.sleep(0.4)
+        
 
 
     def expect(self, move):

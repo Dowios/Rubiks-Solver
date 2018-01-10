@@ -27,46 +27,45 @@ void setup() {
 void loop() {
   char moves = Serial.read();
   selectMove(moves);
-  delay(500);
 }
 
 void selectMove(char str) {
   switch(str) {
     case 'U':
-      moveMotor(TOP, HIGH);
-      break;
-    case 'u':
       moveMotor(TOP, LOW);
       break;
-    case 'D':
-      moveMotor(BTM, HIGH);
+    case 'u':
+      moveMotor(TOP, HIGH);
       break;
-    case 'd':
+    case 'D':
       moveMotor(BTM, LOW);
       break;
-    case 'L':
-      moveMotor(LFT, HIGH);
+    case 'd':
+      moveMotor(BTM, HIGH);
       break;
-    case 'l':
+    case 'L':
       moveMotor(LFT, LOW);
       break;
-    case 'R':
-      moveMotor(RGT, HIGH);
+    case 'l':
+      moveMotor(LFT, HIGH);
       break;
-    case 'r':
+    case 'R':
       moveMotor(RGT, LOW);
       break;
-    case 'F':
-      moveMotor(FRT, HIGH);
+    case 'r':
+      moveMotor(RGT, HIGH);
       break;
-    case 'f':
+    case 'F':
       moveMotor(FRT, LOW);
       break;
+    case 'f':
+      moveMotor(FRT, HIGH);
+      break;
     case 'B':
-      moveMotor(BCK, HIGH);
+      moveMotor(BCK, LOW);
       break;
     case 'b':
-      moveMotor(BCK, LOW);
+      moveMotor(BCK, HIGH);
       break;
   }
 }
