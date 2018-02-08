@@ -1,4 +1,4 @@
-import Camera
+import Cam
 import solve
 import cube
 import optimize
@@ -9,7 +9,7 @@ from string import maketrans
 # trans = maketrans(colormap, posmap)
 typ = input("1: camera, 2: key \n")
 if (typ == 1):
-	color = Camera.open()
+	color = Cam.open()
 else:
 	color = raw_input("input \n")
 # color = color.translate(trans)
