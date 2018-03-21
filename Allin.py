@@ -3,6 +3,7 @@ import solve
 import cube
 import optimize
 import ConnectArduino
+import random
 from string import maketrans
 # colormap = "WYGRBO"
 # posmap = "UDLFRB"
@@ -10,6 +11,13 @@ from string import maketrans
 typ = input("1: camera, 2: key \n")
 if (typ == 1):
 	color = Cam.open()
+elif (typ == 3):
+	rnd = []
+	for i in range(15):
+		rnd.append(random.choice(['B', 'U', 'D', 'R', 'L', 'F']))
+	res = ' '.join(rnd)
+	print res
+	ConnectArduino.Encoder().send(res)
 else:
 	color = raw_input("input \n")
 # color = color.translate(trans)

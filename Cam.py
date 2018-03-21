@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from collections import Counter
 WINDOW_NAME= ("image")
 WINDOW_NAME2= ("intro")
 webcam = cv2.VideoCapture(0)
@@ -9,8 +10,8 @@ color_two = []
 color = ""
 # xy_one = [[None] * 2 for i in range(27)]
 # xy_two = [[None] * 2 for i in range(27)]
-xy_one = [[236, 85], [288, 56], [305, 29], [304, 112], [348, 72], [412, 37], [382, 141], [432, 88], [484, 60], [214, 145], [280, 174], [364, 204], [425, 190], [475, 137], [521, 113], [228, 215], [289, 239], [356, 273], [425, 262], [469, 221], [508, 179], [216, 260], [290, 312], [356, 338], [420, 333], [465, 285], [495, 265]]
-xy_two = [[184, 118], [207, 104], [243, 60], [298, 55], [366, 86], [438, 138], [165, 212], [200, 158], [237, 128], [296, 124], [380, 159], [428, 184], [158, 269], [189, 236], [228, 200], [279, 193], [364, 228], [428, 244], [332, 348], [244, 328], [196, 317], [360, 323], [295, 313], [223, 281], [412, 297], [334, 281], [265, 248]]
+xy_one = [[177, 128], [235, 102], [260, 74], [242, 154], [316, 123], [357, 87], [322, 171], [379, 137], [425, 106], [157, 186], [222, 213], [299, 238], [361, 227], [413, 190], [457, 159], [173, 256], [233, 289], [298, 315], [369, 303], [413, 267], [454, 225], [160, 299], [245, 359], [306, 382], [366, 374], [409, 332], [434, 314]]
+xy_two = [[153, 183], [179, 169], [215, 136], [270, 127], [331, 154], [398, 207], [135, 273], [168, 220], [206, 199], [270, 196], [341, 227], [401, 253], [127, 330], [156, 305], [197, 270], [259, 271], [330, 293], [403, 321], [301, 407], [210, 391], [159, 378], [324, 391], [270, 378], [187, 351], [377, 370], [310, 351], [223, 319]]
 xy_one_index = 0
 xy_two_index = 0
 colorrange = [0, 0, 0, 0, 0, 0]
@@ -57,6 +58,9 @@ def open():
 			print "generateColor"
 			color = generate_color()
 			print color
+		if k == 100:
+			break
+
 	cv2.destroyAllWindows()
 	return color
 
@@ -108,19 +112,33 @@ def create_xy_array(x, y):
 def apply_xy_array():
 	if cam_index == 0:
 		for xy in xy_one:
-			color_one.append(color_differentiate(xy[0], xy[1]))
+			color_one.append(aver(xy[0], xy[1]))
 		return color_one
 	else:
 		for xy in xy_two:
-			color_two.append(color_differentiate(xy[0], xy[1]))
+			color_two.append(aver(xy[0], xy[1]))
 		return color_two
 
 # def color_detect():
 
+def aver(x, y):
+	mat = []
+	mat.append(color_differentiate(x, y))
+	mat.append(color_differentiate(x + 1, y))
+	mat.append(color_differentiate(x - 1, y))
+	mat.append(color_differentiate(x, y))
+	mat.append(color_differentiate(x + 1, y))
+	mat.append(color_differentiate(x - 1, y))
+	mat.append(color_differentiate(x, y - 1))
+	mat.append(color_differentiate(x + 1, y - 1))
+	mat.append(color_differentiate(x - 1, y - 1))
+	return Counter(mat).most_common(1)[0]
+
 def color_differentiate(x, y):
 	px = color_get(x, y)
+	dis = int(px[2]) - int(px[1])
 	print px
-	if px[1] < 100:
+	if px[1] < 110 and dis > 20:
 		return "W"
 	elif 58 > px[0] >= 20:
 		return "Y"
